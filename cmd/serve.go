@@ -5,10 +5,10 @@ package cmd
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
+	v1 "whalepower.tech/api/v1"
 )
 
 // serveCmd represents the serve command
@@ -23,11 +23,11 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		r := gin.Default()
-		r.GET("/ping", func(c *gin.Context) {
-			c.JSON(http.StatusOK, gin.H{
-				"message": "pong",
-			})
-		})
+		apiGroup := r.Group("/test")
+		testRouter := v1.TestRouter{
+			ApiGroup: apiGroup,
+		}
+		apiGroup.GET("/ping", testRouter.Ping)
 		r.Run(fmt.Sprintf(":%d", globalCfg.Port)) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 	},
 }
