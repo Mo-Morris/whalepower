@@ -1,4 +1,4 @@
-package v1
+package node
 
 import (
 	"net/http"
@@ -6,11 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type TestRouter struct {
-	ApiGroup *gin.RouterGroup
-}
-
-func (*TestRouter) Ping(ctx *gin.Context) {
+// 查询算力节点
+func (nr *NodeRouter) NodeList(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "pong",
 	})

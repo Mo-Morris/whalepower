@@ -8,26 +8,21 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
-	v1 "whalepower.tech/api/v1"
+	adminv1 "whalepower.tech/api/v1/admin"
+	nodev1 "whalepower.tech/api/v1/node"
+	testv1 "whalepower.tech/api/v1/test"
 )
 
 // serveCmd represents the serve command
 var serveCmd = &cobra.Command{
 	Use:   "serve",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "cloudnative computing platform",
+	Long:  `a cloudnatvive computing platform, support nivia card.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		r := gin.Default()
-		apiGroup := r.Group("/test")
-		testRouter := v1.TestRouter{
-			ApiGroup: apiGroup,
-		}
-		apiGroup.GET("/ping", testRouter.Ping)
+		testv1.Entry.InitTestRouter(r.Group("/test"))
+		nodev1.Entry.InitNodeRouter(r.Group("/node"))
+		adminv1.Entry.InitAdminRouter(r.Group("/admin"))
 		r.Run(fmt.Sprintf(":%d", globalCfg.Port)) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 	},
 }
