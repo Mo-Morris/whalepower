@@ -7,7 +7,7 @@ import (
 )
 
 // 查询算力节点
-func (nr *NodeRouter) NodeList(ctx *gin.Context) {
+func (nr *NodeRouter) List(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "pong",
 	})

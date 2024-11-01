@@ -6,7 +6,7 @@ type NodeRouter struct {
 }
 
 func (nr *NodeRouter) InitNodeRouter(rg *gin.RouterGroup) {
-	rg.GET("/list", nr.NodeList)
+	rg.GET("/list", nr.List)
 }
 
 var Entry = new(NodeRouter)

@@ -1,7 +1,19 @@
 # whalepower
-Cloud native computing platform, managing NVIDIA nodes
+解决有很多算力卡的主机，用户可以选择某个算力卡，快速部署自己的镜像，在容器里面coding。
+
+## 功能点
+
+- [ ] 算力节点查看
+- [ ] 算力实例创建
+    - [ ] 系统盘（镜像本身）
+    - [ ] 数据盘（节点上的分区）
+    - [ ] 网盘（管理个人数据）
+- [ ] 算力镜像管理
+- [ ] 存储网盘管理
+    - [ ] minio对象存储
 
 
 ## structure
 
-![](./docs/算力平台v1.jpg)
+算力平台v1alpha1
+![](./docs/算力平台v1alpha1.jpg)
