@@ -1,5 +1,5 @@
 # 第一阶段：构建阶段
-FROM harbor.vastaitech.com/dev-center-public/golang:1.20.5-bullseye as builder
+FROM golang:1.23 as builder
 
 # 设置工作目录
 WORKDIR /app
