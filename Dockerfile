@@ -1,5 +1,5 @@
 # 第一阶段：构建阶段
-FROM m.daocloud.io/docker.io/golang:1.23 AS builder
+FROM harbor.vastaitech.com/dev-center-public/golang:1.20.5-bullseye as builder
 
 # 设置工作目录
 WORKDIR /app
@@ -19,7 +19,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o whalepower
 
 # 第二阶段：运行阶段
-FROM m.daocloud.io/docker.io/alpine:3.18
+FROM harbor.vastaitech.com/dev-center/alpine:3.20.2 as prod
 
 # 创建一个非root用户来运行应用
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
